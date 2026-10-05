@@ -1,0 +1,17 @@
+# Build
+target/
+
+# Secretos y material criptografico (se generan con generate-keystores.ps1)
+*.p12
+keys/
+application-local.properties
+.env
+
+# Crash dumps de la JVM
+hs_err_pid*.log
+replay_pid*.log
+
+# Logs, salvo la evidencia de las pruebas (si se versiona)
+*.log
+!evidencia/
+!evidencia/**/*.log

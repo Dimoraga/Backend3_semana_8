@@ -1,0 +1,41 @@
+=== Verificacion post-rotacion de la clave root de MySQL (2026-10-05 15:36 hora local) ===
+Contexto: clave root rotada en MySQL80 (Windows) y en .env/application-local.properties (no versionados).
+El volumen de MySQL del compose se recreo desde cero con la clave nueva (DB_PASSWORD del .env). Ninguna clave se muestra aqui.
+
+$ docker compose down -v   (ejecutado antes; volumen banco_mysql-data eliminado)
+$ docker compose up -d
+Container banco-kafka-1 Healthy 
+Container banco-kafka-init-1 Exited 
+Container banco-mysql-1 Healthy 
+
+$ docker compose ps -a
+SERVICE              STATE     STATUS
+auth-server          running   Up 2 minutes
+bankbatchprocessor   exited    Exited (0) 15 seconds ago
+bbf-cajeros          running   Up About a minute
+bbf-mobile           running   Up About a minute
+bbf-web              running   Up About a minute
+core-banking-api     running   Up About a minute
+kafka                running   Up 2 minutes (healthy)
+kafka-init           exited    Exited (0) About a minute ago
+mysql                running   Up 2 minutes (healthy)
+notificaciones       running   Up About a minute
+
+--- conexion a BD con la clave nueva ---
+core-banking-api HikariPool: HikariPool-1 - Start completed
+mysql healthcheck (mysqladmin ping con MYSQL_ROOT_PASSWORD): healthy
+errores de acceso a BD en core/batch: 0
+
+--- prueba minima ---
+login web (POST :8444/auth/login @login.json) -> {"token":"***","expiresInSeconds":1800} HTTP=200
+saldo 105 (GET :8444/cuentas/105/saldo) -> {"cuentaId":105,"numeroCuenta":"CTA-000105","titular":"Diana Prince","tipo":"AHORRO","saldo":232000.00,"moneda":"CLP","fechaConsulta":"2026-10-05T18:39:26.659085873"} HTTP=200
+login cajero (POST :8446/auth/login @login-cajero.json) -> {"token":"***","expiresInSeconds":300,"cuentaId":105} HTTP=200
+retiro 1000 (POST :8446/cuentas/105/retiros @retiro.json) -> {"confirmacion":"OK","montoRetirado":1000,"saldoDisponible":231000.00,"fecha":"2026-10-05T18:39:28.852055358"} HTTP=200
+$ docker compose logs notificaciones | grep "NOTIFICACION ->"
+2026-10-05T18:39:32.941Z  INFO 1 --- [notificaciones] [ntainer#0-0-C-1] com.duoc.notificaciones.RetiroConsumer   : NOTIFICACION -> Retiro de $1000 en la cuenta 105. Saldo disponible: $231000.00 (2026-10-05T18:39:28)
+
+$ docker compose logs bankbatchprocessor | grep completed
+name=reporteTransaccionesDiariasJob]] completed
+name=calculoInteresesMensualesJob]] completed
+name=generacionEstadosCuentaAnualesJob]] completed
+bankbatchprocessor: Exited (0) 33 seconds ago, exit code 0

@@ -44,15 +44,17 @@ public class CoreBankingClientConfig {
     public RestClient coreBankingRestClient(
             @Value("${corebanking.client.base-url}") String baseUrl,
             @Value("${corebanking.client.trust-store}") Resource trustStoreResource,
-            @Value("${corebanking.client.trust-store-password}") String trustStorePassword,
+            @Value("${corebanking.client.trust-store-password:}") String trustStorePassword,
             OAuth2AuthorizedClientManager authorizedClientManager,
             CircuitBreaker circuitBreaker, Retry retry, Bulkhead bulkhead) throws Exception {
 
-        SSLContext sslContext = buildSslContext(trustStoreResource, trustStorePassword);
-        HttpClient httpClient = HttpClient.newBuilder()
-                .sslContext(sslContext)
-                .connectTimeout(Duration.ofSeconds(2))
-                .build();
+        HttpClient.Builder httpClientBuilder = HttpClient.newBuilder()
+                .connectTimeout(Duration.ofSeconds(2));
+        // En la red Docker (perfil docker) core va por HTTP: el truststore solo aplica a https://
+        if (baseUrl.startsWith("https://")) {
+            httpClientBuilder.sslContext(buildSslContext(trustStoreResource, trustStorePassword));
+        }
+        HttpClient httpClient = httpClientBuilder.build();
         JdkClientHttpRequestFactory requestFactory = new JdkClientHttpRequestFactory(httpClient);
         requestFactory.setReadTimeout(Duration.ofSeconds(3));
 

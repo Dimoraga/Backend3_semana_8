@@ -1,0 +1,58 @@
+=== Verificacion desde cero (2026-10-05 14:14 hora local) ===
+$ docker compose down -v
+Container banco-bankbatchprocessor-1 Removed 
+Container banco-bbf-cajeros-1 Removed 
+Container banco-bbf-web-1 Removed 
+Container banco-bbf-mobile-1 Removed 
+Container banco-notificaciones-1 Removed 
+Container banco-kafka-init-1 Removed 
+Container banco-core-banking-api-1 Removed 
+Container banco-auth-server-1 Removed 
+Container banco-mysql-1 Removed 
+Container banco-kafka-1 Removed 
+Volume banco_mysql-data Removing 
+Network banco_banco-net Removing 
+Volume banco_mysql-data Removed 
+Network banco_banco-net Removed 
+$ docker compose up -d --no-build
+Container banco-auth-server-1 Started 
+Container banco-bankbatchprocessor-1 Started 
+Container banco-bbf-cajeros-1 Started 
+Container banco-bbf-mobile-1 Started 
+Container banco-bbf-web-1 Started 
+Container banco-core-banking-api-1 Started 
+Container banco-kafka-1 Healthy 
+Container banco-kafka-1 Started 
+Container banco-kafka-init-1 Exited 
+Container banco-kafka-init-1 Started 
+Container banco-mysql-1 Healthy 
+Container banco-mysql-1 Started 
+Container banco-notificaciones-1 Started 
+(servicios listos tras ~30 s)
+
+$ docker compose ps -a
+SERVICE              STATE     STATUS
+auth-server          running   Up 2 minutes
+bankbatchprocessor   exited    Exited (0) 8 seconds ago
+bbf-cajeros          running   Up About a minute
+bbf-mobile           running   Up About a minute
+bbf-web              running   Up About a minute
+core-banking-api     running   Up About a minute
+kafka                running   Up 2 minutes (healthy)
+kafka-init           exited    Exited (0) About a minute ago
+mysql                running   Up 2 minutes (healthy)
+notificaciones       running   Up About a minute
+
+--- prueba minima ---
+login web (POST :8444/auth/login @login.json) -> {"token":"***","expiresInSeconds":1800} HTTP=200
+saldo 105 (GET :8444/cuentas/105/saldo) -> {"cuentaId":105,"numeroCuenta":"CTA-000105","titular":"Diana Prince","tipo":"AHORRO","saldo":232000.00,"moneda":"CLP","fechaConsulta":"2026-10-05T17:17:18.127364241"} HTTP=200
+login cajero (POST :8446/auth/login @login-cajero.json) -> {"token":"***","expiresInSeconds":300,"cuentaId":105} HTTP=200
+retiro 1000 (POST :8446/cuentas/105/retiros @retiro.json) -> {"confirmacion":"OK","montoRetirado":1000,"saldoDisponible":231000.00,"fecha":"2026-10-05T17:17:24.771714684"} HTTP=200
+$ docker compose logs notificaciones | grep "NOTIFICACION ->"
+2026-10-05T17:17:31.714Z  INFO 1 --- [notificaciones] [ntainer#0-0-C-1] com.duoc.notificaciones.RetiroConsumer   : NOTIFICACION -> Retiro de $1000 en la cuenta 105. Saldo disponible: $231000.00 (2026-10-05T17:17:24)
+
+$ docker compose logs bankbatchprocessor | grep "completed"
+name=reporteTransaccionesDiariasJob]] completed
+name=calculoInteresesMensualesJob]] completed
+name=generacionEstadosCuentaAnualesJob]] completed
+bankbatchprocessor exit code: 0

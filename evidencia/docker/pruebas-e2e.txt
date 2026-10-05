@@ -1,0 +1,103 @@
+Pruebas end-to-end contra los contenedores de docker-compose.yaml (2026-10-05)
+Tokens y secretos reemplazados por *** o <token ...>. Horas de los logs de contenedores en UTC.
+
+=== a) core directo sin token ===
+$ curl.exe -i http://localhost:8443/internal/cuentas/105/saldo
+a) GET core /internal/cuentas/105/saldo sin token -> HTTP 401  
+
+=== b) login web + saldo via bbf-web ===
+$ curl.exe -X POST http://localhost:8444/auth/login -H "Content-Type: application/json" --data-binary @login.json
+b) login web -> HTTP 200  {"token":"***","expiresInSeconds":1800}
+$ curl.exe http://localhost:8444/cuentas/105/saldo -H "Authorization: Bearer <token web>"
+b) saldo 105 via bbf-web -> HTTP 200  {"cuentaId":105,"numeroCuenta":"CTA-000105","titular":"Diana Prince","tipo":"AHORRO","saldo":232000.00,"moneda":"CLP","fechaConsulta":"2026-10-05T17:06:18.858326899"}
+
+=== c) login mobile + saldo via bbf-mobile ===
+$ curl.exe -X POST http://localhost:8445/auth/login -H "Content-Type: application/json" --data-binary @login-mobile.json
+c) login mobile -> HTTP 200  {"accessToken":"***","refreshToken":"***","expiresInSeconds":900}
+$ curl.exe http://localhost:8445/cuentas/105/saldo -H "Authorization: Bearer <accessToken mobile>"
+c) saldo 105 via bbf-mobile -> HTTP 200  {"cuentaId":105,"saldo":232000.00,"moneda":"CLP"}
+
+=== d) login cajero + retiro 1000 via bbf-cajeros ===
+$ curl.exe -X POST http://localhost:8446/auth/login -H "Content-Type: application/json" --data-binary @login-cajero.json
+d) login cajero -> HTTP 200  {"token":"***","expiresInSeconds":300,"cuentaId":105}
+$ curl.exe -X POST http://localhost:8446/cuentas/105/retiros -H "Authorization: Bearer <token cajero>" -H "Content-Type: application/json" --data-binary @retiro.json
+d) retiro 1000 cuenta 105 -> HTTP 200  {"confirmacion":"OK","montoRetirado":1000,"saldoDisponible":231000.00,"fecha":"2026-10-05T17:06:32.076877472"}
+$ docker compose logs notificaciones | grep "NOTIFICACION ->"
+2026-10-05T17:06:38.005Z  INFO 1 --- [notificaciones] [ntainer#0-0-C-1] com.duoc.notificaciones.RetiroConsumer   : NOTIFICACION -> Retiro de $1000 en la cuenta 105. Saldo disponible: $231000.00 (2026-10-05T17:06:32)
+2026-10-05T17:06:35.999Z  INFO 1 --- [core-banking-api] [-api-producer-1] c.d.c.event.RetiroEventPublisher         : Evento de retiro publicado: topic=retiros-realizados particion=2 offset=0 cuenta=105
+
+=== e) aislamiento por canal y por scope ===
+$ curl.exe -X POST http://localhost:8446/cuentas/105/retiros -H "Authorization: Bearer <token WEB>" --data-binary @retiro.json   (token de usuario web contra el BFF de cajeros)
+e1) retiro con token de usuario WEB en bbf-cajeros -> HTTP 403  
+e2) token de servicio bbf-web (client_credentials, scope=core.read) obtenido: si
+$ curl.exe -X POST http://localhost:8443/internal/cuentas/105/retiros -H "Authorization: Bearer <token servicio bbf-web scope core.read>" --data-binary {"monto":1000,"canal":"WEB","usuario":"usuario105"}
+e2) retiro directo en core con scope core.read (sin core.write) -> HTTP 403  
+
+=== f) resiliencia: core detenido ===
+$ docker compose stop core-banking-api
+ Container banco-core-banking-api-1 Stopped 
+f) GET saldo #1 (14:07:09) -> HTTP 503 Retry-After: 15 {"timestamp":"2026-10-05T17:07:13.976029798","status":503,"message":"El servicio bancario no esta disponible temporalmente. Intente nuevamen
+f) GET saldo #2 (14:07:14) -> HTTP 503 Retry-After: 15 {"timestamp":"2026-10-05T17:07:14.624549261","status":503,"message":"El servicio bancario no esta disponible temporalmente. Intente nuevamen
+f) GET saldo #3 (14:07:15) -> HTTP 503 Retry-After: 15 {"timestamp":"2026-10-05T17:07:15.129154578","status":503,"message":"El servicio bancario no esta disponible temporalmente. Intente nuevamen
+f) GET saldo #4 (14:07:15) -> HTTP 503 Retry-After: 15 {"timestamp":"2026-10-05T17:07:15.695994262","status":503,"message":"El servicio bancario no esta disponible temporalmente. Intente nuevamen
+f) GET saldo #5 (14:07:16) -> HTTP 503 Retry-After: 15 {"timestamp":"2026-10-05T17:07:16.23114632","status":503,"message":"El servicio bancario no esta disponible temporalmente. Intente nuevament
+f) GET saldo #6 (14:07:16) -> HTTP 503 Retry-After: 15 {"timestamp":"2026-10-05T17:07:16.81398607","status":503,"message":"El servicio bancario no esta disponible temporalmente. Intente nuevament
+f) GET saldo #7 (14:07:17) -> HTTP 503 Retry-After: 15 {"timestamp":"2026-10-05T17:07:17.318547575","status":503,"message":"El servicio bancario no esta disponible temporalmente. Intente nuevamen
+f) GET saldo #8 (14:07:17) -> HTTP 503 Retry-After: 15 {"timestamp":"2026-10-05T17:07:17.867535782","status":503,"message":"El servicio bancario no esta disponible temporalmente. Intente nuevamen
+$ docker compose start core-banking-api
+ Container banco-core-banking-api-1 Started 
+(espera 20 s)
+f) GET saldo tras start, intento 1 (14:07:41) -> HTTP 200  {"cuentaId":105,"numeroCuenta":"CTA-000105","titular":"Diana Prince","tipo":"AHORRO","saldo":231000.00,"moneda":"CLP","fechaConsulta":"2026-
+core 'Started' a las: 17:07:39 UTC
+
+--- transiciones del circuit breaker (bbf-web) ---
+f) GET saldo tras start, intento 2 (14:08:02) -> HTTP 200
+f) GET saldo tras start, intento 3 (14:08:02) -> HTTP 200
+f) GET saldo tras start, intento 4 (14:08:02) -> HTTP 200
+
+--- transiciones del circuit breaker (docker compose logs bbf-web) ---
+2026-10-05T17:07:12.921Z  WARN 1 --- [bbf-web] [nio-8444-exec-6] c.duoc.bbfweb.config.ResilienceConfig    : Retry core-banking-api: intento 1 fallido
+2026-10-05T17:07:13.259Z  WARN 1 --- [bbf-web] [nio-8444-exec-6] c.duoc.bbfweb.config.ResilienceConfig    : Retry core-banking-api: intento 2 fallido
+2026-10-05T17:07:13.886Z  WARN 1 --- [bbf-web] [nio-8444-exec-6] c.duoc.bbfweb.config.ResilienceConfig    : CircuitBreaker core-banking-api: State transition from CLOSED to OPEN
+2026-10-05T17:07:29.069Z  WARN 1 --- [bbf-web] [ransitionThread] c.duoc.bbfweb.config.ResilienceConfig    : CircuitBreaker core-banking-api: State transition from OPEN to HALF_OPEN
+2026-10-05T17:08:02.453Z  WARN 1 --- [bbf-web] [nio-8444-exec-5] c.duoc.bbfweb.config.ResilienceConfig    : CircuitBreaker core-banking-api: State transition from HALF_OPEN to CLOSED
+
+=== g) resiliencia Kafka ===
+$ docker compose stop kafka
+ Container banco-kafka-1 Stopped 
+login cajero: token obtenido=si
+$ curl.exe -X POST http://localhost:8446/cuentas/105/retiros -H "Authorization: Bearer <token cajero>" -H "Content-Type: application/json" --data-binary @retiro.json
+g) retiro con Kafka detenido -> {"confirmacion":"OK","montoRetirado":1000,"saldoDisponible":230000.00,"fecha":"2026-10-05T17:08:24.969062899"} HTTP=200 t=0.535164s
+--- core-banking-api: publicacion fallida ---
+2026-10-05T17:08:29.266Z  WARN 1 --- [core-banking-api] [event-publisher] c.d.c.event.RetiroEventPublisher         : No se pudo publicar evento de retiro: cuenta=105 causa=Failed to construct kafka producer
+$ docker compose start kafka
+ Container banco-kafka-1 Started 
+kafka: healthy tras ~25s
+notificaciones tras reinicio de kafka: 2026-10-05T17:04:16.349Z partitions assigned
+g) retiro con Kafka de vuelta -> {"confirmacion":"OK","montoRetirado":1000,"saldoDisponible":229000.00,"fecha":"2026-10-05T17:09:27.139698902"} HTTP=200 t=0.146403s
+--- core / notificaciones tras volver Kafka ---
+2026-10-05T17:09:30.637Z  INFO 1 --- [core-banking-api] [-api-producer-2] c.d.c.event.RetiroEventPublisher         : Evento de retiro publicado: topic=retiros-realizados particion=2 offset=1 cuenta=105
+2026-10-05T17:09:30.790Z  INFO 1 --- [notificaciones] [ntainer#0-0-C-1] com.duoc.notificaciones.RetiroConsumer   : NOTIFICACION -> Retiro de $1000 en la cuenta 105. Saldo disponible: $229000.00 (2026-10-05T17:09:27)
+
+=== h) bankbatchprocessor ===
+$ docker compose ps -a bankbatchprocessor
+bankbatchprocessor exited Exited (0) 4 minutes ago
+exit code: 0
+$ docker compose logs bankbatchprocessor (extracto)
+2026-10-05T17:04:27.432Z  INFO 1 --- [bankBatchProcessor] [           main] c.d.b.BankBatchProcessorApplication      : The following 1 profile is active: "docker"
+2026-10-05T17:04:57.190Z  INFO 1 --- [bankBatchProcessor] [           main] c.d.b.BankBatchProcessorApplication      : Started BankBatchProcessorApplication in 33.62 seconds (process running for 39.339)
+2026-10-05T17:04:57.197Z  INFO 1 --- [bankBatchProcessor] [           main] c.d.b.batch.config.BatchJobsRunner       : Iniciando reporteTransaccionesDiariasJob
+2026-10-05T17:04:58.874Z  INFO 1 --- [bankBatchProcessor] [           main] o.s.batch.core.step.AbstractStep         : Step: [limpiarTransaccionesStep] executed in 143ms
+2026-10-05T17:05:01.215Z  INFO 1 --- [bankBatchProcessor] [           main] o.s.batch.core.step.AbstractStep         : Step: [procesarTransaccionesStep] executed in 2s163ms
+2026-10-05T17:05:01.422Z  INFO 1 --- [bankBatchProcessor] [           main] o.s.batch.core.step.AbstractStep         : Step: [resumenTransaccionesStep] executed in 98ms
+2026-10-05T17:05:01.528Z  INFO 1 --- [bankBatchProcessor] [           main] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=reporteTransaccionesDiariasJob]] completed with the following parameters: [{JobParameter{name='ejecutadoEn', value=179
+2026-10-05T17:05:01.529Z  INFO 1 --- [bankBatchProcessor] [           main] c.d.b.batch.config.BatchJobsRunner       : Iniciando calculoInteresesMensualesJob
+2026-10-05T17:05:01.863Z  INFO 1 --- [bankBatchProcessor] [           main] o.s.batch.core.step.AbstractStep         : Step: [limpiarCuentasInteresesStep] executed in 115ms
+2026-10-05T17:05:03.338Z  INFO 1 --- [bankBatchProcessor] [           main] o.s.batch.core.step.AbstractStep         : Step: [procesarInteresesStep] executed in 1s293ms
+2026-10-05T17:05:03.625Z  INFO 1 --- [bankBatchProcessor] [           main] o.s.batch.core.step.AbstractStep         : Step: [resumenInteresesStep] executed in 97ms
+2026-10-05T17:05:03.741Z  INFO 1 --- [bankBatchProcessor] [           main] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=calculoInteresesMensualesJob]] completed with the following parameters: [{JobParameter{name='ejecutadoEn', value=17912
+2026-10-05T17:05:03.741Z  INFO 1 --- [bankBatchProcessor] [           main] c.d.b.batch.config.BatchJobsRunner       : Iniciando generacionEstadosCuentaAnualesJob
+2026-10-05T17:05:04.144Z  INFO 1 --- [bankBatchProcessor] [           main] o.s.batch.core.step.AbstractStep         : Step: [limpiarMovimientosCuentaAnualStep] executed in 223ms
+2026-10-05T17:05:05.772Z  INFO 1 --- [bankBatchProcessor] [           main] o.s.batch.core.step.AbstractStep         : Step: [procesarMovimientosCuentaAnualStep] executed in 1s327ms
+2026-10-05T17:05:06.254Z  INFO 1 --- [bankBatchProcessor] [           main] o.s.batch.core.step.AbstractStep         : Step: [compilarEstadosCuentaAnualStep] executed in 361ms
+2026-10-05T17:05:06.375Z  INFO 1 --- [bankBatchProcessor] [           main] o.s.b.c.l.s.TaskExecutorJobLauncher      : Job: [SimpleJob: [name=generacionEstadosCuentaAnualesJob]] completed with the following parameters: [{JobParameter{name='ejecutadoEn', value=

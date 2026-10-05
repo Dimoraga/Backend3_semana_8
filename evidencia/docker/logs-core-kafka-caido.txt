@@ -1,0 +1,9 @@
+2026-10-05T17:08:25.753Z  INFO 1 --- [core-banking-api] [event-publisher] o.a.k.clients.producer.ProducerConfig    : Idempotence will be disabled because acks is set to 1, not set to 'all'.
+	client.id = core-banking-api-producer-1
+2026-10-05T17:08:29.173Z  WARN 1 --- [core-banking-api] [event-publisher] org.apache.kafka.clients.ClientUtils     : Couldn't resolve server kafka:9092 from bootstrap.servers as DNS resolution failed for kafka
+2026-10-05T17:08:29.174Z  INFO 1 --- [core-banking-api] [event-publisher] o.a.k.clients.producer.KafkaProducer     : [Producer clientId=core-banking-api-producer-1] Closing the Kafka producer with timeoutMillis = 0 ms.
+2026-10-05T17:08:29.265Z  INFO 1 --- [core-banking-api] [event-publisher] o.a.kafka.common.utils.AppInfoParser     : App info kafka.producer for core-banking-api-producer-1 unregistered
+2026-10-05T17:08:29.266Z  WARN 1 --- [core-banking-api] [event-publisher] c.d.c.event.RetiroEventPublisher         : No se pudo publicar evento de retiro: cuenta=105 causa=Failed to construct kafka producer
+2026-10-05T17:09:27.207Z  INFO 1 --- [core-banking-api] [event-publisher] o.a.k.clients.producer.ProducerConfig    : Idempotence will be disabled because acks is set to 1, not set to 'all'.
+	client.id = core-banking-api-producer-2
+2026-10-05T17:09:30.492Z  INFO 1 --- [core-banking-api] [-api-producer-2] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-2] Cluster ID: 5L6g3nShT-eMCtK--X86sw

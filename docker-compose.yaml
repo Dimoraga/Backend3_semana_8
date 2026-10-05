@@ -1,0 +1,227 @@
+# Sistema bancario Semana_8 completo en Docker.
+#   Levantar:  docker compose up -d
+#   Bajar:     docker compose down        (agregar -v para borrar tambien los datos de MySQL)
+# Secretos: SOLO desde .env (no versionado; ver .env.example). Claves de firma JWT: ./keys (no versionado).
+# Dentro de la red todo va por HTTP (perfil "docker" de cada imagen).
+
+name: banco
+
+networks:
+  # Red bridge propia: los servicios se resuelven por nombre (mysql, kafka, auth-server, core-banking-api)
+  banco-net:
+    driver: bridge
+
+volumes:
+  # Datos de MySQL persistentes entre "down" y "up" (los scripts de db-init solo corren con el volumen vacio)
+  mysql-data:
+
+services:
+
+  # ---------- Infraestructura ----------
+
+  # MySQL 8.0 con el dump de springbatch_db. 3307 en el host porque 3306 lo usa el servicio MySQL80 de Windows.
+  mysql:
+    image: mysql:8.0
+    # Igual que MySQL80 en Windows (de donde sale el dump): nombres de tabla sin distincion de mayusculas.
+    # Sin esto, schema-batch-mysql.sql (BATCH_*) no reconoce las tablas batch_* del dump y bankbatchprocessor falla.
+    # Solo se aplica al inicializar el volumen: si cambia, recrear con "docker compose down -v".
+    command: ["--lower-case-table-names=1"]
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./db-init:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "3307:3306"
+    # Ping por TCP (127.0.0.1): durante la carga inicial MySQL corre sin red, asi que no se marca healthy antes de tiempo.
+    # $$ evita que compose interpole la clave: la lee el shell del contenedor.
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+    mem_limit: 768m
+    restart: unless-stopped
+    networks: [banco-net]
+
+  # Kafka 3.9 en modo KRaft (un solo nodo, broker + controller).
+  # INTERNAL kafka:9092 para los contenedores; EXTERNAL localhost:9092 para el host (puerto 29092 del contenedor).
+  kafka:
+    image: apache/kafka:3.9.0
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: INTERNAL://:9092,EXTERNAL://:29092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,EXTERNAL://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      # El default de la imagen es 1 GB de heap; con poca RAM basta 256 MB para un nodo de pruebas
+      KAFKA_HEAP_OPTS: "-Xms256m -Xmx256m"
+    ports:
+      - "9092:29092"
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092 > /dev/null 2>&1"]
+      interval: 10s
+      timeout: 15s
+      retries: 10
+      start_period: 20s
+    mem_limit: 768m
+    restart: unless-stopped
+    networks: [banco-net]
+
+  # One-shot: crea el topic de eventos de retiro cuando Kafka esta healthy y termina.
+  kafka-init:
+    image: apache/kafka:3.9.0
+    depends_on:
+      kafka:
+        condition: service_healthy
+    environment:
+      KAFKA_HEAP_OPTS: "-Xmx128m"
+    entrypoint: ["/bin/bash", "-c"]
+    command:
+      - >-
+        /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists
+        --topic retiros-realizados --partitions 3 --replication-factor 1 &&
+        /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --describe --topic retiros-realizados
+    mem_limit: 384m
+    restart: "no"
+    networks: [banco-net]
+
+  # ---------- Seguridad ----------
+
+  # Authorization Server OAuth2 (client_credentials de los 3 BFF). Issuer: http://auth-server:9000
+  auth-server:
+    image: banco/auth-server:1.0
+    build: ./auth-server
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      BBF_WEB_SECRET: ${BBF_WEB_SECRET}
+      BBF_MOBILE_SECRET: ${BBF_MOBILE_SECRET}
+      BBF_CAJEROS_SECRET: ${BBF_CAJEROS_SECRET}
+    ports:
+      - "9000:9000"
+    mem_limit: 512m
+    restart: unless-stopped
+    networks: [banco-net]
+
+  # ---------- Core ----------
+
+  # Core bancario: MySQL (mysql:3306), resource server contra auth-server, productor Kafka (kafka:9092).
+  # Firma los JWT de usuario con ./keys/core-signing-key.p12 (montado solo lectura).
+  core-banking-api:
+    image: banco/core-banking-api:1.0
+    build: ./core-banking-api
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      DB_PASSWORD: ${DB_PASSWORD}
+      JWT_KEYSTORE_PASSWORD: ${JWT_KEYSTORE_PASSWORD}
+    volumes:
+      - ./keys:/keys:ro
+    ports:
+      - "8443:8443"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      auth-server:
+        condition: service_started
+    mem_limit: 768m
+    restart: unless-stopped
+    networks: [banco-net]
+
+  # ---------- BFF por canal (validan JWT de usuario con ./keys/core-signing-cert.pem) ----------
+
+  bbf-web:
+    image: banco/bbf-web:1.0
+    build: ./bbf-web
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      BBF_WEB_SECRET: ${BBF_WEB_SECRET}
+    volumes:
+      - ./keys:/keys:ro
+    ports:
+      - "8444:8444"
+    depends_on:
+      core-banking-api:
+        condition: service_started
+      auth-server:
+        condition: service_started
+    mem_limit: 512m
+    restart: unless-stopped
+    networks: [banco-net]
+
+  bbf-mobile:
+    image: banco/bbf-mobile:1.0
+    build: ./bbf-mobile
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      BBF_MOBILE_SECRET: ${BBF_MOBILE_SECRET}
+    volumes:
+      - ./keys:/keys:ro
+    ports:
+      - "8445:8445"
+    depends_on:
+      core-banking-api:
+        condition: service_started
+      auth-server:
+        condition: service_started
+    mem_limit: 512m
+    restart: unless-stopped
+    networks: [banco-net]
+
+  bbf-cajeros:
+    image: banco/bbf-cajeros:1.0
+    build: ./bbf-cajeros
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      BBF_CAJEROS_SECRET: ${BBF_CAJEROS_SECRET}
+    volumes:
+      - ./keys:/keys:ro
+    ports:
+      - "8446:8446"
+    depends_on:
+      core-banking-api:
+        condition: service_started
+      auth-server:
+        condition: service_started
+    mem_limit: 512m
+    restart: unless-stopped
+    networks: [banco-net]
+
+  # ---------- Consumidores / procesos ----------
+
+  # Consumidor Kafka del topic retiros-realizados (sin puerto HTTP)
+  notificaciones:
+    image: banco/notificaciones:1.0
+    build: ./notificaciones
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      KAFKA_BOOTSTRAP: kafka:9092
+    depends_on:
+      kafka-init:
+        condition: service_completed_successfully
+    mem_limit: 512m
+    restart: unless-stopped
+    networks: [banco-net]
+
+  # Batch one-shot: ejecuta sus 3 jobs (CSV -> MySQL) y termina con exit 0/1; no se reinicia.
+  bankbatchprocessor:
+    image: banco/bankbatchprocessor:1.0
+    build: ./bankbatchprocessor
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      DB_PASSWORD: ${DB_PASSWORD}
+    depends_on:
+      mysql:
+        condition: service_healthy
+    mem_limit: 640m
+    restart: "no"
+    networks: [banco-net]

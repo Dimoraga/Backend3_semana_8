@@ -1,0 +1,14 @@
+target/
+.git
+.github
+*.log
+hs_err_pid*
+replay_pid*
+**/application-local.properties
+**/*.p12
+keys/
+**/keys/
+.idea
+.vscode
+.env
+HELP.md

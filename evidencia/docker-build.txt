@@ -1,0 +1,58 @@
+=== docker images banco/* (2026-10-05 13:47) ===
+REPOSITORY:TAG                 IMAGE ID       SIZE      CREATED
+banco/bankbatchprocessor:1.0   88b0553c4c84   370MB     4 minutes ago
+banco/notificaciones:1.0       b4ff6efc0a50   353MB     4 minutes ago
+banco/bbf-cajeros:1.0          2af912b01795   344MB     5 minutes ago
+banco/bbf-mobile:1.0           cf195b0ea8e7   344MB     6 minutes ago
+banco/bbf-web:1.0              fa660bef7208   344MB     6 minutes ago
+banco/core-banking-api:1.0     9f41bbe23990   448MB     7 minutes ago
+banco/auth-server:1.0          afc3b459fa46   335MB     8 minutes ago
+
+Builds ejecutados uno por uno: docker build --progress=plain -t banco/<modulo>:1.0 <modulo>
+
+--- build banco/auth-server:1.0 (lineas finales) ---
+#20 naming to docker.io/banco/auth-server:1.0 0.0s done
+#20 unpacking to docker.io/banco/auth-server:1.0
+#20 unpacking to docker.io/banco/auth-server:1.0 0.9s done
+#20 DONE 2.9s
+
+--- build banco/core-banking-api:1.0 (lineas finales) ---
+#20 naming to docker.io/banco/core-banking-api:1.0 done
+#20 unpacking to docker.io/banco/core-banking-api:1.0
+#20 unpacking to docker.io/banco/core-banking-api:1.0 0.6s done
+#20 DONE 5.2s
+
+--- build banco/bbf-web:1.0 (lineas finales) ---
+#20 naming to docker.io/banco/bbf-web:1.0 done
+#20 unpacking to docker.io/banco/bbf-web:1.0
+#20 unpacking to docker.io/banco/bbf-web:1.0 0.3s done
+#20 DONE 5.4s
+
+--- build banco/bbf-mobile:1.0 (lineas finales) ---
+#20 naming to docker.io/banco/bbf-mobile:1.0 0.0s done
+#20 unpacking to docker.io/banco/bbf-mobile:1.0
+#20 unpacking to docker.io/banco/bbf-mobile:1.0 0.5s done
+#20 DONE 3.1s
+
+--- build banco/bbf-cajeros:1.0 (lineas finales) ---
+#20 naming to docker.io/banco/bbf-cajeros:1.0 done
+#20 unpacking to docker.io/banco/bbf-cajeros:1.0
+#20 unpacking to docker.io/banco/bbf-cajeros:1.0 0.3s done
+#20 DONE 2.8s
+
+--- build banco/notificaciones:1.0 (lineas finales) ---
+#20 naming to docker.io/banco/notificaciones:1.0 done
+#20 unpacking to docker.io/banco/notificaciones:1.0
+#20 unpacking to docker.io/banco/notificaciones:1.0 0.5s done
+#20 DONE 3.2s
+
+--- build banco/bankbatchprocessor:1.0 (lineas finales) ---
+#20 naming to docker.io/banco/bankbatchprocessor:1.0 done
+#20 unpacking to docker.io/banco/bankbatchprocessor:1.0
+#20 unpacking to docker.io/banco/bankbatchprocessor:1.0 0.4s done
+#20 DONE 3.3s
+
+--- smoke test banco/auth-server:1.0 (SPRING_PROFILES_ACTIVE=docker, -p 9000:9000) ---
+Started AuthserverApplication in 3.441 seconds; Tomcat started on port 9000 (http)
+GET http://localhost:9000/oauth2/jwks -> 200 application/json 429B; issuer anunciado: http://auth-server:9000; memoria contenedor 158.4MiB
+Contenedor smoke-auth-server detenido y eliminado.

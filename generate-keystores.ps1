@@ -24,21 +24,60 @@
 .PARAMETER StorePassword
     Contraseña para los 4 keystores TLS y los truststores. Debe copiarse a
     mano en application-local.properties de cada servicio.
+    Sin valor por defecto: se toma del parametro, de la variable de entorno
+    KEYSTORE_STORE_PASSWORD o se pide por consola (sin eco). Minimo 6 caracteres.
 
 .PARAMETER SigningKeyPassword
-    Contraseña del keystore de firma JWT de core-banking-api.
+    Contraseña del keystore de firma JWT de core-banking-api (va tambien en
+    JWT_KEYSTORE_PASSWORD del .env para Docker).
+    Sin valor por defecto: se toma del parametro, de la variable de entorno
+    KEYSTORE_SIGNING_PASSWORD o se pide por consola (sin eco). Minimo 6 caracteres.
 
 .EXAMPLE
     .\generate-keystores.ps1
-    .\generate-keystores.ps1 -Force -StorePassword "otraClave123"
+    (pide ambas contraseñas por consola)
+
+.EXAMPLE
+    $env:KEYSTORE_STORE_PASSWORD = "<clave TLS>"; $env:KEYSTORE_SIGNING_PASSWORD = "<clave JWT>"
+    .\generate-keystores.ps1 -Force
 #>
 param(
     [switch]$Force,
-    [string]$StorePassword = "changeit123",
-    [string]$SigningKeyPassword = "changeit123"
+    [string]$StorePassword,
+    [string]$SigningKeyPassword
 )
 
 $ErrorActionPreference = "Stop"
+
+# Resuelve una contrasena sin valor por defecto: parametro > variable de entorno > Read-Host -AsSecureString.
+# Si no se obtiene ninguna (por ejemplo en modo no interactivo) falla con un mensaje claro.
+function Resolve-Password {
+    param([string]$Valor, [string]$Parametro, [string]$VariableEntorno, [string]$Descripcion)
+
+    if (-not $Valor) { $Valor = [Environment]::GetEnvironmentVariable($VariableEntorno) }
+    if (-not $Valor) {
+        try {
+            $seguro = Read-Host -AsSecureString "Contrasena para $Descripcion"
+            $bstr = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($seguro)
+            try { $Valor = [Runtime.InteropServices.Marshal]::PtrToStringBSTR($bstr) }
+            finally { [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($bstr) }
+        } catch {
+            $Valor = $null
+        }
+    }
+    if (-not $Valor) {
+        throw "Falta la contrasena para $Descripcion. Entregala con -$Parametro, con la variable de entorno $VariableEntorno o escribela cuando el script la pida."
+    }
+    if ($Valor.Length -lt 6) {
+        throw "La contrasena para $Descripcion debe tener al menos 6 caracteres (requisito de keytool)."
+    }
+    return $Valor
+}
+
+$StorePassword = Resolve-Password -Valor $StorePassword -Parametro "StorePassword" `
+    -VariableEntorno "KEYSTORE_STORE_PASSWORD" -Descripcion "los keystores TLS y truststores"
+$SigningKeyPassword = Resolve-Password -Valor $SigningKeyPassword -Parametro "SigningKeyPassword" `
+    -VariableEntorno "KEYSTORE_SIGNING_PASSWORD" -Descripcion "el keystore de firma JWT"
 
 function Resolve-Keytool {
     $cmd = Get-Command keytool -ErrorAction SilentlyContinue
@@ -151,8 +190,7 @@ foreach ($bff in $bffs) {
 }
 
 Write-Host "`n== Listo =="
-Write-Host "Contraseña de los 4 keystores TLS y los truststores: $StorePassword"
-Write-Host "Contraseña del keystore de firma JWT: $SigningKeyPassword"
+Write-Host "Las contrasenas no se muestran: usa las mismas que entregaste a este script."
 Write-Host ""
 Write-Host "Falta completar a mano en cada application-local.properties:"
 Write-Host "  - core-banking-api: server.ssl.key-store-password, corebanking.jwt.keystore-password, corebanking.jwt.key-password"

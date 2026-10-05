@@ -1,0 +1,11 @@
+REPOSITORY:TAG                 IMAGE ID       SIZE      CREATED
+banco/bankbatchprocessor:1.0   88b0553c4c84   370MB     26 minutes ago
+banco/notificaciones:1.0       b4ff6efc0a50   353MB     27 minutes ago
+banco/bbf-cajeros:1.0          2af912b01795   344MB     28 minutes ago
+banco/bbf-mobile:1.0           cf195b0ea8e7   344MB     28 minutes ago
+banco/bbf-web:1.0              fa660bef7208   344MB     29 minutes ago
+banco/core-banking-api:1.0     9f41bbe23990   448MB     30 minutes ago
+banco/auth-server:1.0          afc3b459fa46   335MB     31 minutes ago
+(infra)
+mysql:8.0                                                  7dcddc01f13b   1.1GB
+apache/kafka:3.9.0                                         fbc7d7c428e3   627MB

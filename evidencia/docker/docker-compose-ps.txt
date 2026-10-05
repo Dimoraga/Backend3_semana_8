@@ -1,0 +1,11 @@
+NAME                         IMAGE                          COMMAND                  SERVICE              CREATED         STATUS                        PORTS
+banco-auth-server-1          banco/auth-server:1.0          "sh -c 'exec java $J…"   auth-server          7 minutes ago   Up 7 minutes                  0.0.0.0:9000->9000/tcp, [::]:9000->9000/tcp
+banco-bankbatchprocessor-1   banco/bankbatchprocessor:1.0   "sh -c 'exec java $J…"   bankbatchprocessor   7 minutes ago   Exited (0) 4 minutes ago      
+banco-bbf-cajeros-1          banco/bbf-cajeros:1.0          "sh -c 'exec java $J…"   bbf-cajeros          7 minutes ago   Up 5 minutes                  0.0.0.0:8446->8446/tcp, [::]:8446->8446/tcp
+banco-bbf-mobile-1           banco/bbf-mobile:1.0           "sh -c 'exec java $J…"   bbf-mobile           7 minutes ago   Up 5 minutes                  0.0.0.0:8445->8445/tcp, [::]:8445->8445/tcp
+banco-bbf-web-1              banco/bbf-web:1.0              "sh -c 'exec java $J…"   bbf-web              7 minutes ago   Up 5 minutes                  0.0.0.0:8444->8444/tcp, [::]:8444->8444/tcp
+banco-core-banking-api-1     banco/core-banking-api:1.0     "sh -c 'exec java $J…"   core-banking-api     7 minutes ago   Up 2 minutes                  0.0.0.0:8443->8443/tcp, [::]:8443->8443/tcp
+banco-kafka-1                apache/kafka:3.9.0             "/__cacert_entrypoin…"   kafka                7 minutes ago   Up About a minute (healthy)   0.0.0.0:9092->29092/tcp, [::]:9092->29092/tcp
+banco-kafka-init-1           apache/kafka:3.9.0             "/bin/bash -c '/opt/…"   kafka-init           7 minutes ago   Exited (0) 6 minutes ago      
+banco-mysql-1                mysql:8.0                      "docker-entrypoint.s…"   mysql                7 minutes ago   Up 7 minutes (healthy)        0.0.0.0:3307->3306/tcp, [::]:3307->3306/tcp
+banco-notificaciones-1       banco/notificaciones:1.0       "sh -c 'exec java $J…"   notificaciones       7 minutes ago   Up 6 minutes                  

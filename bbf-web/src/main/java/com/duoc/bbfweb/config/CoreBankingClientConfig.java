@@ -34,7 +34,8 @@ import java.util.function.Supplier;
 
 /**
  * RestClient hacia core-banking-api con HTTPS real (truststore que confia
- * en su certificado autofirmado) y el header de confianza servicio-a-servicio.
+ * en su certificado autofirmado), token OAuth2 client_credentials del
+ * auth-server en cada request y proteccion Resilience4j.
  */
 @Configuration
 public class CoreBankingClientConfig {

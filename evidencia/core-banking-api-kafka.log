@@ -1,0 +1,412 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------< com.duoc.corebankingapi:corebankingapi >---------------
+[INFO] Building corebankingapi 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.1.1:run (default-cli) > test-compile @ corebankingapi >>>
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ corebankingapi ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] Copying 4 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ corebankingapi ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ corebankingapi ---
+[INFO] skip non existing resourceDirectory C:\Users\diego\Documents\DUOC\Desarrollo Backend III\Semana_8\core-banking-api\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ corebankingapi ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:4.1.1:run (default-cli) < test-compile @ corebankingapi <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.1.1:run (default-cli) @ corebankingapi ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.1)
+
+2026-10-05T01:24:59.904-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] c.d.c.CorebankingapiApplication          : Starting CorebankingapiApplication using Java 21.0.6 with PID 12260 (C:\Users\diego\Documents\DUOC\Desarrollo Backend III\Semana_8\core-banking-api\target\classes started by diego in C:\Users\diego\Documents\DUOC\Desarrollo Backend III\Semana_8\core-banking-api)
+2026-10-05T01:24:59.909-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] c.d.c.CorebankingapiApplication          : The following 1 profile is active: "local"
+2026-10-05T01:24:59.994-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-10-05T01:24:59.994-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-10-05T01:25:01.073-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-05T01:25:01.192-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 104 ms. Found 10 JPA repository interfaces.
+2026-10-05T01:25:02.285-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8443 (https)
+2026-10-05T01:25:02.331-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-05T01:25:02.332-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-10-05T01:25:02.403-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2408 ms
+2026-10-05T01:25:02.641-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-10-05T01:25:02.754-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.5.Final
+2026-10-05T01:25:03.529-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-05T01:25:03.575-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-05T01:25:03.883-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3e6d2ad4
+2026-10-05T01:25:03.893-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-05T01:25:04.050-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/springbatch_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.43
+	Default catalog/schema: springbatch_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-05T01:25:05.662-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-05T01:25:05.668-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] org.hibernate.orm.jdbc.batch             : HHH100501: Automatic JDBC statement batching enabled (maximum batch size 50)
+2026-10-05T01:25:05.820-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-05T01:25:05.922-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-10-05T01:25:08.549-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8443], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [Set directly - location unknown] using alias [core-tls] with trust store [null]
+2026-10-05T01:25:08.575-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8443 (https) with context path '/'
+2026-10-05T01:25:08.581-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] c.d.c.CorebankingapiApplication          : Started CorebankingapiApplication in 9.311 seconds (process running for 10.007)
+2026-10-05T01:25:23.290-03:00  INFO 12260 --- [core-banking-api] [nio-8443-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-05T01:25:23.294-03:00  INFO 12260 --- [core-banking-api] [nio-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-05T01:25:23.315-03:00  INFO 12260 --- [core-banking-api] [nio-8443-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 20 ms
+2026-10-05T01:25:49.392-03:00  INFO 12260 --- [core-banking-api] [nio-8443-exec-2] o.a.k.clients.producer.ProducerConfig    : Idempotence will be disabled because acks is set to 1, not set to 'all'.
+2026-10-05T01:25:49.397-03:00  INFO 12260 --- [core-banking-api] [nio-8443-exec-2] o.a.kafka.common.config.AbstractConfig   : ProducerConfig values: 
+	acks = 1
+	batch.size = 16384
+	bootstrap.servers = [localhost:9092]
+	buffer.memory = 33554432
+	client.dns.lookup = use_all_dns_ips
+	client.id = core-banking-api-producer-1
+	compression.gzip.level = -1
+	compression.lz4.level = 9
+	compression.type = none
+	compression.zstd.level = 3
+	config.providers = []
+	connections.max.idle.ms = 540000
+	delivery.timeout.ms = 5000
+	enable.idempotence = false
+	enable.metrics.push = true
+	interceptor.classes = []
+	key.serializer = class org.apache.kafka.common.serialization.StringSerializer
+	linger.ms = 5
+	max.block.ms = 3000
+	max.in.flight.requests.per.connection = 5
+	max.request.size = 1048576
+	metadata.max.age.ms = 300000
+	metadata.max.idle.ms = 300000
+	metadata.recovery.rebootstrap.trigger.ms = 300000
+	metadata.recovery.strategy = rebootstrap
+	metric.reporters = [org.apache.kafka.common.metrics.JmxReporter]
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partitioner.adaptive.partitioning.enable = true
+	partitioner.availability.timeout.ms = 0
+	partitioner.class = null
+	partitioner.ignore.keys = false
+	receive.buffer.bytes = 32768
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 3000
+	retries = 2147483647
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.assertion.algorithm = RS256
+	sasl.oauthbearer.assertion.claim.aud = null
+	sasl.oauthbearer.assertion.claim.exp.seconds = 300
+	sasl.oauthbearer.assertion.claim.iss = null
+	sasl.oauthbearer.assertion.claim.jti.include = false
+	sasl.oauthbearer.assertion.claim.nbf.seconds = 60
+	sasl.oauthbearer.assertion.claim.sub = null
+	sasl.oauthbearer.assertion.file = null
+	sasl.oauthbearer.assertion.private.key.file = null
+	sasl.oauthbearer.assertion.private.key.passphrase = null
+	sasl.oauthbearer.assertion.template.file = null
+	sasl.oauthbearer.client.credentials.client.id = null
+	sasl.oauthbearer.client.credentials.client.secret = null
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = []
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.header.urlencode = false
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.jwt.retriever.class = class org.apache.kafka.common.security.oauthbearer.DefaultJwtRetriever
+	sasl.oauthbearer.jwt.validator.class = class org.apache.kafka.common.security.oauthbearer.DefaultJwtValidator
+	sasl.oauthbearer.scope = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = []
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	transaction.timeout.ms = 60000
+	transaction.two.phase.commit.enable = false
+	transactional.id = null
+	value.serializer = class org.apache.kafka.common.serialization.StringSerializer
+
+2026-10-05T01:25:49.527-03:00  INFO 12260 --- [core-banking-api] [nio-8443-exec-2] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-10-05T01:25:49.784-03:00  INFO 12260 --- [core-banking-api] [nio-8443-exec-2] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.2.1
+2026-10-05T01:25:49.784-03:00  INFO 12260 --- [core-banking-api] [nio-8443-exec-2] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: 92f61c44867f39dc
+2026-10-05T01:25:49.784-03:00  INFO 12260 --- [core-banking-api] [nio-8443-exec-2] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1791174349778
+2026-10-05T01:25:50.827-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Cluster ID: 5L6g3nShT-eMCtK--X86sw
+2026-10-05T01:25:51.098-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] c.d.c.event.RetiroEventPublisher         : Evento de retiro publicado: topic=retiros-realizados particion=2 offset=2 cuenta=105
+2026-10-05T01:26:09.507-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] c.d.c.event.RetiroEventPublisher         : Evento de retiro publicado: topic=retiros-realizados particion=2 offset=3 cuenta=105
+2026-10-05T01:26:09.666-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] c.d.c.event.RetiroEventPublisher         : Evento de retiro publicado: topic=retiros-realizados particion=2 offset=4 cuenta=105
+2026-10-05T01:26:24.868-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node 1 disconnected.
+2026-10-05T01:26:24.985-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:24.994-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node 1 disconnected.
+2026-10-05T01:26:24.995-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 7 due to node 1 being disconnected (elapsed time since creation: 9ms, elapsed time since send: 9ms, throttle time: 0ms, request timeout: 3000ms)
+2026-10-05T01:26:25.105-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:25.110-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:25.111-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 8 due to node -1 being disconnected (elapsed time since creation: 2ms, elapsed time since send: 2ms, throttle time: 0ms, request timeout: 3000ms)
+2026-10-05T01:26:25.169-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:25.358-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:25.359-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 9 due to node -1 being disconnected (elapsed time since creation: 2ms, elapsed time since send: 2ms, throttle time: 0ms, request timeout: 3000ms)
+2026-10-05T01:26:25.359-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:25.792-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:25.792-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 10 due to node -1 being disconnected (elapsed time since creation: 3ms, elapsed time since send: 3ms, throttle time: 0ms, request timeout: 3000ms)
+2026-10-05T01:26:25.792-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:26.768-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:26.768-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:26.768-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:27.638-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:27.772-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:27.773-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:27.773-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:28.787-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:28.789-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:28.789-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:29.788-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:29.788-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:29.788-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:30.542-03:00 ERROR 12260 --- [core-banking-api] [nio-8443-exec-9] o.s.k.support.LoggingProducerListener    : Exception thrown when sending a message with key='105' and payload='{"cuentaId":105,"monto":1000,"saldoDisponible":234000.00,"fecha":"2026-10-05T01:26:27"}' to topic retiros-realizados:
+
+org.apache.kafka.common.errors.TimeoutException: Topic retiros-realizados not present in metadata after 3000 ms.
+
+2026-10-05T01:26:30.633-03:00  WARN 12260 --- [core-banking-api] [nio-8443-exec-9] c.d.c.event.RetiroEventPublisher         : No se pudo publicar evento de retiro: cuenta=105 causa=Send failed
+2026-10-05T01:26:30.794-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:30.794-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:30.794-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:31.802-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:31.804-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:31.804-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:32.683-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:32.748-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:32.806-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:32.807-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:32.807-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:33.823-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:33.823-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:33.824-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:34.835-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:34.836-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:34.836-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:35.837-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:35.837-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:35.837-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:36.803-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:36.861-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:36.861-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:36.861-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:37.873-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:37.874-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:37.874-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:38.877-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:38.878-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:38.878-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:39.887-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:39.887-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:39.887-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:40.891-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:40.891-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:40.892-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:41.905-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:41.905-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:41.906-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:42.920-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:42.920-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:42.920-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:43.924-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:43.924-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:43.924-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:44.936-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:44.936-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:44.936-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:45.953-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:45.953-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:45.953-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:46.965-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:46.967-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:46.967-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:47.837-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:47.970-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:47.971-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:47.971-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:48.984-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:48.986-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:48.986-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:49.903-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:49.904-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:49.904-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:50.915-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:50.915-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:50.915-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:51.927-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:51.927-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:51.927-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:52.938-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:52.939-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:52.939-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:53.950-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:53.950-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Connection to node -1 (localhost/127.0.0.1:9092) could not be established. Node may not be available.
+2026-10-05T01:26:53.950-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:54.933-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:54.935-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 11 due to node -1 being disconnected (elapsed time since creation: 6ms, elapsed time since send: 6ms, throttle time: 0ms, request timeout: 3000ms)
+2026-10-05T01:26:54.935-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:54.935-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:54.986-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:55.055-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:55.122-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:55.189-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:55.250-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:55.306-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:55.372-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:55.434-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:55.530-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:55.591-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:55.650-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:55.702-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:55.768-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:55.820-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:26:55.894-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:55.894-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 12 due to node -1 being disconnected (elapsed time since creation: 2ms, elapsed time since send: 2ms, throttle time: 0ms, request timeout: 3000ms)
+2026-10-05T01:26:55.894-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:56.908-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:56.908-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 13 due to node -1 being disconnected (elapsed time since creation: 4ms, elapsed time since send: 4ms, throttle time: 0ms, request timeout: 3000ms)
+2026-10-05T01:26:56.909-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:57.922-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:57.922-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 14 due to node -1 being disconnected (elapsed time since creation: 2ms, elapsed time since send: 2ms, throttle time: 0ms, request timeout: 3000ms)
+2026-10-05T01:26:57.923-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:58.938-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:58.939-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 15 due to node -1 being disconnected (elapsed time since creation: 3ms, elapsed time since send: 3ms, throttle time: 0ms, request timeout: 3000ms)
+2026-10-05T01:26:58.939-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:26:59.955-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:26:59.955-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 16 due to node -1 being disconnected (elapsed time since creation: 2ms, elapsed time since send: 2ms, throttle time: 0ms, request timeout: 3000ms)
+2026-10-05T01:26:59.955-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:27:00.975-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:27:00.976-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 17 due to node -1 being disconnected (elapsed time since creation: 2ms, elapsed time since send: 2ms, throttle time: 0ms, request timeout: 3000ms)
+2026-10-05T01:27:00.976-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:27:01.819-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:27:01.991-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:27:01.992-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 18 due to node -1 being disconnected (elapsed time since creation: 1ms, elapsed time since send: 1ms, throttle time: 0ms, request timeout: 3000ms)
+2026-10-05T01:27:01.992-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:27:02.815-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Rebootstrapping with [localhost/127.0.0.1:9092]
+2026-10-05T01:27:03.010-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:27:03.010-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 19 due to node -1 being disconnected (elapsed time since creation: 4ms, elapsed time since send: 4ms, throttle time: 0ms, request timeout: 3000ms)
+2026-10-05T01:27:03.012-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:27:04.022-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Node -1 disconnected.
+2026-10-05T01:27:04.023-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Cancelled in-flight API_VERSIONS request with correlation id 20 due to node -1 being disconnected (elapsed time since creation: 2ms, elapsed time since send: 2ms, throttle time: 0ms, request timeout: 3000ms)
+2026-10-05T01:27:04.023-03:00  WARN 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.NetworkClient   : [Producer clientId=core-banking-api-producer-1] Bootstrap broker localhost:9092 (id: -1 rack: null isFenced: false) disconnected
+2026-10-05T01:27:05.421-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Resetting the last seen epoch of partition retiros-realizados-2 to 2 since the associated topicId changed from null to 0Ww71n-2SZKpL3NjHIqqPQ
+2026-10-05T01:27:05.423-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Resetting the last seen epoch of partition retiros-realizados-1 to 2 since the associated topicId changed from null to 0Ww71n-2SZKpL3NjHIqqPQ
+2026-10-05T01:27:05.423-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Resetting the last seen epoch of partition retiros-realizados-0 to 2 since the associated topicId changed from null to 0Ww71n-2SZKpL3NjHIqqPQ
+2026-10-05T01:27:05.430-03:00  INFO 12260 --- [core-banking-api] [-api-producer-1] org.apache.kafka.clients.Metadata        : [Producer clientId=core-banking-api-producer-1] Cluster ID: 5L6g3nShT-eMCtK--X86sw
+2026-10-05T01:27:17.197-03:00  INFO 12260 --- [core-banking-api] [   File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-10-05T01:27:17.392-03:00  INFO 12260 --- [core-banking-api] [       Thread-1] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-10-05T01:27:17.440-03:00  INFO 12260 --- [core-banking-api] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-10-05T01:27:17.473-03:00  INFO 12260 --- [core-banking-api] [       Thread-1] o.a.k.clients.producer.KafkaProducer     : [Producer clientId=core-banking-api-producer-1] Closing the Kafka producer with timeoutMillis = 30000 ms.
+2026-10-05T01:27:17.520-03:00  INFO 12260 --- [core-banking-api] [       Thread-1] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2026-10-05T01:27:17.520-03:00  INFO 12260 --- [core-banking-api] [       Thread-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-10-05T01:27:17.521-03:00  INFO 12260 --- [core-banking-api] [       Thread-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2026-10-05T01:27:17.521-03:00  INFO 12260 --- [core-banking-api] [       Thread-1] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2026-10-05T01:27:17.537-03:00  INFO 12260 --- [core-banking-api] [       Thread-1] o.a.kafka.common.utils.AppInfoParser     : App info kafka.producer for core-banking-api-producer-1 unregistered
+2026-10-05T01:27:17.579-03:00  INFO 12260 --- [core-banking-api] [       Thread-1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-10-05T01:27:17.656-03:00  INFO 12260 --- [core-banking-api] [       Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-10-05T01:27:17.726-03:00  INFO 12260 --- [core-banking-api] [       Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.1)
+
+2026-10-05T01:27:18.229-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] c.d.c.CorebankingapiApplication          : Starting CorebankingapiApplication using Java 21.0.6 with PID 12260 (C:\Users\diego\Documents\DUOC\Desarrollo Backend III\Semana_8\core-banking-api\target\classes started by diego in C:\Users\diego\Documents\DUOC\Desarrollo Backend III\Semana_8\core-banking-api)
+2026-10-05T01:27:18.232-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] c.d.c.CorebankingapiApplication          : The following 1 profile is active: "local"
+2026-10-05T01:27:18.799-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-05T01:27:18.928-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 125 ms. Found 10 JPA repository interfaces.
+2026-10-05T01:27:19.321-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8443 (https)
+2026-10-05T01:27:19.324-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-05T01:27:19.324-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-10-05T01:27:19.362-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1123 ms
+2026-10-05T01:27:19.431-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-10-05T01:27:19.474-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-05T01:27:19.475-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-10-05T01:27:19.543-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2a83af2a
+2026-10-05T01:27:19.543-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-10-05T01:27:19.545-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/springbatch_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.0.43
+	Default catalog/schema: springbatch_db/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-05T01:27:19.772-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-05T01:27:19.772-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] org.hibernate.orm.jdbc.batch             : HHH100501: Automatic JDBC statement batching enabled (maximum batch size 50)
+2026-10-05T01:27:19.862-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-05T01:27:20.979-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8443], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [Set directly - location unknown] using alias [core-tls] with trust store [null]
+2026-10-05T01:27:21.006-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8443 (https) with context path '/'
+2026-10-05T01:27:21.014-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] c.d.c.CorebankingapiApplication          : Started CorebankingapiApplication in 2.838 seconds (process running for 142.438)
+2026-10-05T01:27:21.136-03:00  INFO 12260 --- [core-banking-api] [  restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged

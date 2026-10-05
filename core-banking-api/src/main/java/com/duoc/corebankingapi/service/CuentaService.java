@@ -4,6 +4,8 @@ import com.duoc.corebankingapi.dto.MovimientoResponse;
 import com.duoc.corebankingapi.dto.RetiroRequest;
 import com.duoc.corebankingapi.dto.RetiroResultado;
 import com.duoc.corebankingapi.dto.SaldoResponse;
+import com.duoc.corebankingapi.event.RetiroEventPublisher;
+import com.duoc.corebankingapi.event.RetiroRealizadoEvent;
 import com.duoc.corebankingapi.exception.CuentaNoEncontradaException;
 import com.duoc.corebankingapi.exception.IdempotencyKeyConflictException;
 import com.duoc.corebankingapi.exception.SaldoInsuficienteException;
@@ -17,8 +19,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronization;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,6 +36,7 @@ public class CuentaService {
     private final CuentaRepository cuentaRepository;
     private final MovimientoCuentaRepository movimientoCuentaRepository;
     private final RetiroIdempotenciaRepository retiroIdempotenciaRepository;
+    private final RetiroEventPublisher retiroEventPublisher;
 
     @Transactional(readOnly = true)
     public SaldoResponse consultarSaldo(Long cuentaId) {
@@ -102,7 +110,28 @@ public class CuentaService {
             retiroIdempotenciaRepository.save(registro);
         }
 
+        publicarTrasCommit(new RetiroRealizadoEvent(cuentaId, request.monto(), saldoNuevo,
+                formatearFecha(movimiento.getFecha())));
+
         return new RetiroResultado(movimiento.getId(), saldoAnterior, saldoNuevo, movimiento.getFecha());
+    }
+
+    /**
+     * El evento sale solo despues del commit: si la transaccion se revierte
+     * no se notifica un retiro que nunca ocurrio. Los reintentos idempotentes
+     * retornan antes y no vuelven a publicar.
+     */
+    private void publicarTrasCommit(RetiroRealizadoEvent evento) {
+        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
+            @Override
+            public void afterCommit() {
+                retiroEventPublisher.publicar(evento);
+            }
+        });
+    }
+
+    private String formatearFecha(LocalDateTime fecha) {
+        return fecha.truncatedTo(ChronoUnit.SECONDS).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     }
 
     private Optional<RetiroResultado> buscarRetiroPrevio(Long cuentaId, RetiroRequest request, String idempotencyKey) {

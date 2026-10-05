@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Emisor de tokens. Solo lo llaman los 3 BFF (protegido por
- * InternalApiKeyFilter), nunca un cliente final directamente: cada BFF ya
+ * Emisor de tokens. Solo lo llaman los 3 BFF (con su token OAuth2 de
+ * scope core.read), nunca un cliente final directamente: cada BFF ya
  * valido las credenciales especificas de su canal antes de pedir aqui el
  * JWT correspondiente.
  */

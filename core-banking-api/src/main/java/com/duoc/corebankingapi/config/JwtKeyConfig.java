@@ -19,7 +19,7 @@ import java.security.PublicKey;
  * generate-keystores.ps1 y se distribuye a los 3 BFF para validar firmas.
  */
 @Configuration
-@EnableConfigurationProperties({JwtProperties.class, InternalApiKeyProperties.class})
+@EnableConfigurationProperties(JwtProperties.class)
 public class JwtKeyConfig {
 
     @Bean

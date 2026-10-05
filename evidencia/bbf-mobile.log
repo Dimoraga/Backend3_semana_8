@@ -49,3 +49,70 @@
 2026-10-04T23:56:17.454-03:00  INFO 22028 --- [bbf-mobile] [nio-8445-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2026-10-04T23:56:17.459-03:00  INFO 22028 --- [bbf-mobile] [nio-8445-exec-5] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2026-10-04T23:56:17.482-03:00  INFO 22028 --- [bbf-mobile] [nio-8445-exec-5] o.s.web.servlet.DispatcherServlet        : Completed initialization in 21 ms
+2026-10-05T00:35:20.735-03:00  INFO 22028 --- [bbf-mobile] [   File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 3 class path changes (0 additions, 0 deletions, 3 modifications)
+2026-10-05T00:35:21.224-03:00  INFO 22028 --- [bbf-mobile] [       Thread-1] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-10-05T00:35:21.654-03:00  INFO 22028 --- [bbf-mobile] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.1)
+
+2026-10-05T00:35:26.655-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] c.duoc.bbfmobile.BbfmobileApplication    : Starting BbfmobileApplication using Java 21.0.6 with PID 22028 (C:\Users\diego\Documents\DUOC\Desarrollo Backend III\Semana_8\bbf-mobile\target\classes started by diego in C:\Users\diego\Documents\DUOC\Desarrollo Backend III\Semana_8\bbf-mobile)
+2026-10-05T00:35:26.659-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] c.duoc.bbfmobile.BbfmobileApplication    : The following 1 profile is active: "local"
+2026-10-05T00:35:30.368-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8445 (https)
+2026-10-05T00:35:30.393-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-05T00:35:30.394-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-10-05T00:35:30.558-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 3807 ms
+2026-10-05T00:35:31.948-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8445], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [Set directly - location unknown] using alias [mobile-tls] with trust store [null]
+2026-10-05T00:35:31.956-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8445 (https) with context path '/'
+2026-10-05T00:35:31.962-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] c.duoc.bbfmobile.BbfmobileApplication    : Started BbfmobileApplication in 6.879 seconds (process running for 2405.548)
+2026-10-05T00:35:31.969-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-10-05T01:00:46.436-03:00  INFO 22028 --- [bbf-mobile] [   File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 29 class path changes (0 additions, 5 deletions, 24 modifications)
+2026-10-05T01:00:49.016-03:00  INFO 22028 --- [bbf-mobile] [       Thread-6] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-10-05T01:00:49.365-03:00  INFO 22028 --- [bbf-mobile] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.1)
+
+2026-10-05T01:00:50.396-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] c.duoc.bbfmobile.BbfmobileApplication    : Starting BbfmobileApplication using Java 21.0.6 with PID 22028 (C:\Users\diego\Documents\DUOC\Desarrollo Backend III\Semana_8\bbf-mobile\target\classes started by diego in C:\Users\diego\Documents\DUOC\Desarrollo Backend III\Semana_8\bbf-mobile)
+2026-10-05T01:00:50.397-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] c.duoc.bbfmobile.BbfmobileApplication    : The following 1 profile is active: "local"
+2026-10-05T01:00:53.050-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8445 (https)
+2026-10-05T01:00:53.058-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-05T01:00:53.058-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.24]
+2026-10-05T01:00:53.300-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2886 ms
+2026-10-05T01:00:56.474-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] o.a.t.util.net.NioEndpoint.certificate   : Connector [https-jsse-nio-8445], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [Set directly - location unknown] using alias [mobile-tls] with trust store [null]
+2026-10-05T01:00:56.546-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8445 (https) with context path '/'
+2026-10-05T01:00:56.578-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] c.duoc.bbfmobile.BbfmobileApplication    : Started BbfmobileApplication in 6.34 seconds (process running for 3930.162)
+2026-10-05T01:00:56.580-03:00  INFO 22028 --- [bbf-mobile] [  restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-10-05T01:00:57.989-03:00  INFO 22028 --- [bbf-mobile] [   File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 5 class path changes (5 additions, 0 deletions, 0 modifications)
+2026-10-05T01:00:58.010-03:00  INFO 22028 --- [bbf-mobile] [      Thread-10] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-10-05T01:00:58.111-03:00  INFO 22028 --- [bbf-mobile] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1048576 bytes for AllocateHeap
+# An error report file with more information is saved as:
+# C:\Users\diego\Documents\DUOC\Desarrollo Backend III\Semana_8\bbf-mobile\hs_err_pid22028.log
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:05 h
+[INFO] Finished at: 2026-10-05T01:00:59-03:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:4.1.1:run (default-cli) on project bbfmobile: Process terminated with exit code: 1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

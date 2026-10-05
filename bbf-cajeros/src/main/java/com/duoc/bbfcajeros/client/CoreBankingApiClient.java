@@ -17,7 +17,7 @@ import org.springframework.web.client.RestClient;
 
 import java.io.IOException;
 
-/** Unico punto de salida hacia core-banking-api (HTTPS + X-Internal-Api-Key ya configurados en el RestClient). */
+/** Unico punto de salida hacia core-banking-api (HTTPS, token OAuth2 y Resilience4j ya configurados en el RestClient). */
 @Component
 @RequiredArgsConstructor
 public class CoreBankingApiClient {

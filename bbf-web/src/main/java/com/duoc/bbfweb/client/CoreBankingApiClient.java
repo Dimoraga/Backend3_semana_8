@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-/** Unico punto de salida hacia core-banking-api (HTTPS + X-Internal-Api-Key ya configurados en el RestClient). */
+/** Unico punto de salida hacia core-banking-api (HTTPS, token OAuth2 y Resilience4j ya configurados en el RestClient). */
 @Component
 @RequiredArgsConstructor
 public class CoreBankingApiClient {

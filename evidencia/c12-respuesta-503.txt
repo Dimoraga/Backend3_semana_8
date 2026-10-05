@@ -1,0 +1,15 @@
+﻿HTTP/1.1 503 
+Retry-After: 15
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 0
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+Strict-Transport-Security: max-age=31536000 ; includeSubDomains
+X-Frame-Options: DENY
+Content-Type: application/json
+Transfer-Encoding: chunked
+Date: Mon, 05 Oct 2026 02:56:50 GMT
+Connection: close
+
+{"message":"El servicio bancario no esta disponible temporalmente. Intente nuevamente en unos segundos.","timestamp":"2026-10-04T23:56:50.3938878","status":503}
